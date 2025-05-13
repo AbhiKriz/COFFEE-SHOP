@@ -1,0 +1,146 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" /> 
+  <link rel="stylesheet" href="style.css" /> 
+  <script> 
+    function validateForm() { 
+      let form = document.forms["admissionForm"]; 
+      let name = form["name"].value.trim(); 
+      let email = form["email"].value.trim(); 
+      let phone = form["phone"].value.trim(); 
+      let birthdate = form["birthdate"].value.trim(); 
+      let address = form["address"].value.trim(); 
+      let city = form["city"].value.trim(); 
+      let region = form["region"].value.trim(); 
+      let postal = form["postal"].value.trim(); 
+      let country = form["country"].value.trim(); 
+ 
+      // Regex patterns 
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+      const nameRegex = /^[A-Za-z\s]+$/; 
+      const phoneRegex = /^\d{10}$/; 
+      const zipRegex = /^\d{5}(-\d{4})?$/; 
+      const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/; 
+ 
+      // Check required fields 
+      if (!name || !email || !phone || !birthdate || !address || !city || 
+!region || !postal || !country) { 
+          alert("All fields must be filled out"); 
+          return false; 
+      } 
+ 
+      if (!nameRegex.test(name)) { 
+          alert("Name must contain only letters and spaces"); 
+          return false; 
+      } 
+ 
+      if (!emailRegex.test(email)) { 
+          alert("Please enter a valid email address"); 
+          return false; 
+      } 
+ 
+      if (!phoneRegex.test(phone)) { 
+          alert("Please enter a valid 10-digit phone number"); 
+          return false; 
+      } 
+ 
+      if (!zipRegex.test(postal)) { 
+          alert("Please enter a valid ZIP code"); 
+          return false; 
+      } 
+ 
+      if (!dateRegex.test(birthdate)) { 
+          alert("Birthdate must be in YYYY-MM-DD format"); 
+          return false; 
+      } 
+ 
+      alert("Form submitted successfully!"); 
+      return true; 
+    } 
+  </script> 
+</head> 
+<body> 
+  <section class="container"> 
+    <header>Registration Form</header> 
+    <form action="#" class="form" name="admissionForm" onsubmit="return 
+validateForm()"> 
+      <div class="input-box"> 
+        <label>Full Name</label> 
+        <input type="text" name="name" placeholder="Enter full name" 
+required /> 
+      </div> 
+ 
+      <div class="input-box"> 
+        <label>Email Address</label> 
+        <input type="email" name="email" placeholder="Enter email address" 
+required /> 
+      </div> 
+ 
+      <div class="column"> 
+        <div class="input-box"> 
+          <label>Phone Number</label> 
+          <input type="text" name="phone" placeholder="Enter phone number" 
+required /> 
+        </div> 
+        <div class="input-box"> 
+          <label>Birth Date</label> 
+          <input type="date" name="birthdate" required /> 
+        </div> 
+      </div> 
+ 
+      <div class="gender-box"> 
+        <h3>Gender</h3> 
+        <div class="gender-option"> 
+          <div class="gender"> 
+            <input type="radio" id="check-male" name="gender" value="Male" 
+checked /> 
+            <label for="check-male">Male</label> 
+          </div> 
+          <div class="gender"> 
+            <input type="radio" id="check-female" name="gender" 
+value="Female" /> 
+            <label for="check-female">Female</label> 
+          </div> 
+          <div class="gender"> 
+            <input type="radio" id="check-other" name="gender" 
+value="Other" /> 
+            <label for="check-other">Prefer not to say</label> 
+          </div> 
+        </div> 
+      </div> 
+ 
+      <div class="input-box address"> 
+        <label>Address</label> 
+        <input type="text" name="address" placeholder="Enter street 
+address" required /> 
+        <input type="text" name="address2" placeholder="Enter street 
+address line 2" /> 
+        <div class="column"> 
+          <div class="select-box"> 
+            <select name="country" required> 
+              <option hidden>Country</option> 
+              <option value="America">America</option> 
+              <option value="Japan">Japan</option> 
+              <option value="India">India</option> 
+              <option value="Nepal">Nepal</option> 
+            </select> 
+          </div> 
+          <input type="text" name="city" placeholder="Enter your city" 
+required /> 
+        </div> 
+        <div class="column"> 
+          <input type="text" name="region" placeholder="Enter your region" 
+required /> 
+          <input type="text" name="postal" placeholder="Enter postal code" 
+required /> 
+        </div> 
+      </div> 
+ 
+      <button type="submit">Submit</button> 
+    </form> 
+  </section> 
+</body> 
+</html> 
